@@ -1,0 +1,133 @@
+git config --global user.name "trinadh"
+git config --global user.email "xyz@gmail.com"
+git config --global default.push "simple"
+git config --global core.editor vim
+
+Creating Central repository
+=========================
+
+mkdir CentralRepository
+cd CentralRepository
+git init --bare
+
+Creating Workspace
+=================
+
+git clone Centralrepository
+
+Creating file annd pushing it to central Repository
+==================================================
+
+vim file1.txt
+git add file1.txt
+git commit -m "pushing file from workspace to centralrepository"
+git push
+
+creating Branch and moving to branch in Workspace repository
+===========================================================
+git branch <branch name>
+git checkout <branchname>
+
+(or)
+
+git checkout -b <branchname>
+
+Pushing data from created Branch to central Repository
+======================================================
+
+git push origin <branchname>
+
+(or)
+
+checkout to master branch and merge the data and push
+
+git checkout master
+git merge <branchname> master
+git push
+
+
+to push all the branches
+=======================
+
+git -u -all
+
+Taking Backup of Workspace repository if you r not sure about code
+=================================================================
+
+git stash
+
+this will create backup and undo the changes
+
+To use the Backup
+================
+
+git stash apply stash{number}
+
+stash will store the backup in form of array and last backup will be "0" previous will be "1"
+
+to clear stash i.e all backup u use below command
+
+git stash clear
+
+
+To undo changes in files
+=======================
+
+git reset soft ---------- this will remove the header from the temporary commit id 
+
+git reset mixed ------------ this will remove the header from temporary commit id and remove file from stagging area
+
+git reset hard -------------- this will remove  the header from temporary commit id and remove file from stagging area and also remove file from working directory
+
+the above commands are used before commiting the file and the below command is reverting the file after commiting file
+
+git revert <commit id>   --------- this will remove the file but commit id will present and new commit id will be created as you have done revert.
+
+to revies commit id's
+=====================
+git log
+git log oneline
+git log oneline -n   -------------- n represents the number how many last commits u want to see
+
+
+to clean the working directory i.e untracked files
+=================================================
+
+git clean -n  -----------(dry run) i.e it will show all the untracted files before deleting
+
+git clean -f  ---------------  to remove the untracked files forcefully
+
+to movreto particular commit id
+===============================
+
+git checkout <commit id>
+
+to move to latest commit id from that commit id
+
+git checkout <branchname>
+
+Tags
+=========
+
+Tags are used name the commit ID in order to know the release easily
+
+git tag -a <tag name> -m <message> <commitid>
+
+Note: we can add multiple tags to single commit id but we cannot add one tag to multiple commit ids
+
+to delete commit id   git tag -d <tagname>
+
+git show <tag> ----- to show tags
+
+git push --tags ---------- to push all tags
+Notes:
+=======
+
+.git is the repository in the workspace, but .git will not be present in central repository as we cannot modify in central repository
+
+
+objets in .git will store the commit ids info 
+
+
+
+
